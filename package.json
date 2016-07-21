@@ -1,0 +1,10 @@
+{
+  "name": "tokentranslator",
+  "version": "0.1.0",
+  "description": "Translate a token file",
+  "main": "app.js",
+  "author": "Tucker Tibbetts",
+  "dependencies": {
+    "mstranslator": "^2.0.8"
+  }
+}
