@@ -17,6 +17,9 @@ Change the `toLanguage` variable to change the output language.
 put the `tokens.js` file at the root of this directory, and run `node app.js`
 the app will write to `out.js` in that language. 
 
+```
+Code    Language
+----------------
 ar	Arabic
 cs	Czech
 da	Danish
@@ -51,5 +54,6 @@ uk	Ukrainian
 vi	Vietnamese
 zh-CHS	Simplified Chinese
 zh-CHT	Traditional Chinese
+```
 
 forgive the terrible readme, this is super alpha of a crappy dev tool only for us
