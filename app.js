@@ -75,7 +75,7 @@ for (var c = 0, len = tokens.length; c < len; c+=chunk) {
 intervalId = setInterval(function() {
 	if (results >= tokens.length || results + (failures*50) >= tokens.length) {
 		clearInterval(intervalId);
-		console.log('Got this many results', results, ' --- and this many failures:', failures, ' --- with this many tokens put in:', tokens.length);
+		console.log('Got this many results: ' + results + '\n - and (about) this many failures: ' + (failures*50) + '\n - with this many tokens put in:', tokens.length);
 
 		var out = JSON.stringify(newTokens, null, 4);
 		out = '// jscs:disable maximumLineLength\n\ndefine(' + out + ');\n';
