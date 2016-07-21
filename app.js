@@ -1,23 +1,29 @@
+// Hack to load in our token file
 var tokenFile;
 define = function(obj) {
 	tokenFile = obj;
- }
+}
 
 var MsTranslator = require('mstranslator');
 var fs = require('fs');
 var config = require('./config.js');
 require('./tokens.js');
 
+// Languages
 var fromLanguage = 'en';
 var toLanguage = 'zh-CHS';
 
+// Set up the MsTranslator client
 var client = new MsTranslator({
 		client_id: config.id,
 		client_secret: config.key
 	}, true)
 
-var paths = [];
-var tokens = [];
+/**
+ * Recursively iterate through "obj" to find all strings,
+ * and add each to the tokens array, and their path to the
+ * paths array.
+ */
 function addTokens(obj, path) {
 	path = path || [];
 	for (var key in obj) {
@@ -32,8 +38,16 @@ function addTokens(obj, path) {
 	}
 }
 
-addTokens(tokenFile);
-
+/**
+ * Recursive function
+ * Add the "token" to the "root" object at "path"
+ * ex. addNewToken("foo", {}, ["hello", "world"]) ->
+ *  {
+ *    "hello": {
+ *  	"world": "foo"
+ *    }
+ *  }
+ */
 function addNewToken(token, root, path) {
 	var next = path[0];
 	if (!root[next]) {
@@ -48,15 +62,14 @@ function addNewToken(token, root, path) {
 	}
 }
 
-var newTokens = {};	
-var chunk = 50;
-var results = 0;
-var failures = 0;
-for (var c = 0, len = tokens.length; c < len; c+=chunk) {
-	var tokenChunk = tokens.slice(c, c+chunk);
-	(function(tokenChunk, chunkIndex) {
-		client.translateArray({
-			texts: tokenChunk,
+/**
+ * translate a list of tokens,
+ * then add them to the new token object.
+ * The offset represents where in the path list to look
+ */
+function translateList(tokenList, offset) {
+	client.translateArray({
+			texts: tokenList,
 			from: fromLanguage,
 			to: toLanguage
 		}, function(err, data) {
@@ -66,13 +79,31 @@ for (var c = 0, len = tokens.length; c < len; c+=chunk) {
 				return;
 			}
 			for (var i in data) {
-				addNewToken(data[i].TranslatedText, newTokens, paths[chunkIndex + +i]);
+				addNewToken(data[i].TranslatedText, newTokens, paths[offset + +i]);
 				results++;
 			}
-		});
-	})(tokenChunk, c);
+		}
+	);
 }
 
+
+var paths = [];
+var tokens = [];
+// Generate the tokens and paths array
+addTokens(tokenFile);
+
+var newTokens = {};	
+var chunk = 50;
+var results = 0;
+var failures = 0;
+// for loop to chunk token queries into lengths that won't
+// break the http request
+for (var c = 0, len = tokens.length; c < len; c+=chunk) {
+	var tokenChunk = tokens.slice(c, c+chunk);
+	translateList(tokenChunk, c);
+}
+
+// Wait for all responses
 intervalId = setInterval(function() {
 	if (results >= tokens.length || results + (failures*50) >= tokens.length) {
 		clearInterval(intervalId);
@@ -87,5 +118,5 @@ intervalId = setInterval(function() {
 		    }
 		}); 
 	}
-}, 500)
+}, 500);
 
