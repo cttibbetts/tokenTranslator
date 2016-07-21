@@ -18,42 +18,42 @@ put the `tokens.js` file at the root of this directory, and run `node app.js`
 the app will write to `out.js` in that language. 
 
 ```
-Code    Language
-----------------
-ar	Arabic
-cs	Czech
-da	Danish
-de	German
-en	English
-et	Estonian
-fi	Finnish
-fr	French
-nl	Dutch
-el	Greek
-he	Hebrew
-ht	Haitian Creole
-hu	Hungarian
-id	Indonesian
-it	Italian
-ja	Japanese
-ko	Korean
-lt	Lithuanian
-lv	Latvian
-no	Norwegian
-pl	Polish
-pt	Portuguese
-ro	Romanian
-es	Spanish
-ru	Russian
-sk	Slovak
-sl	Slovene
-sv	Swedish
-th	Thai
-tr	Turkish
-uk	Ukrainian
-vi	Vietnamese
-zh-CHS	Simplified Chinese
-zh-CHT	Traditional Chinese
+Code    Language Name            Native Name
+--------------------------------------------
+ar	    Arabic	                 العربية
+cs	    Czech	                 česky, čeština
+da	    Danish	                 dansk
+de	    German	                 Deutsch
+en	    English	                 English
+et	    Estonian	             eesti, eesti keel
+fi	    Finnish	                 suomi, suomen kieli
+fr	    French	                 français
+nl	    Dutch	                 Nederlands, Vlaams
+el	    Greek	                 Ελληνικά
+he	    Hebrew	                 עברית
+ht	    Haitian Creole	         Kreyòl ayisyen
+hu	    Hungarian	             Magyar
+id	    Indonesian	             Bahasa Indonesia
+it	    Italian	                 Italiano
+ja	    Japanese	             日本語
+ko	    Korean	                 한국어
+lt	    Lithuanian	             lietuvių kalba
+lv	    Latvian	                 latviešu valoda
+no	    Norwegian	             Norsk
+pl	    Polish	                 polski
+pt	    Portuguese	             Português
+ro	    Romanian	             română
+es	    Spanish	                 español
+ru	    Russian	                 русский язык
+sk	    Slovak	                 slovenčina
+sl	    Slovene	                 slovenščina
+sv	    Swedish	                 svenska
+th	    Thai	                 ไทย
+tr	    Turkish	                 Türkçe
+uk	    Ukrainian	             українська
+vi	    Vietnamese	             Tiếng Việt
+zh-CHS	Simplified Chinese	     中文
+zh-CHT	Traditional Chinese	     
 ```
 
 forgive the terrible readme, this is super alpha of a crappy dev tool only for us
