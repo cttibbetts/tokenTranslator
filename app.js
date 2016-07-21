@@ -92,6 +92,13 @@ var tokens = [];
 // Generate the tokens and paths array
 addTokens(tokenFile);
 
+// Count the characters in the token list
+var charCount = 0;
+for (var t in tokens) {
+	charCount += tokens[t].length;
+}
+console.log('Translating ' + charCount + ' token characters!');
+
 var newTokens = {};	
 var chunk = 50;
 var results = 0;

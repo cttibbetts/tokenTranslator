@@ -17,6 +17,8 @@ Change the `toLanguage` variable to change the output language.
 put the `tokens.js` file at the root of this directory, and run `node app.js`
 the app will write to `out.js` in that language. 
 
+[Languages: ](https://msdn.microsoft.com/en-us/library/hh456380.aspx)
+
 ```
 Code    Language Name            Native Name
 --------------------------------------------
