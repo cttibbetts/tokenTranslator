@@ -5,14 +5,15 @@ define = function(obj) {
 
 var MsTranslator = require('mstranslator');
 var fs = require('fs');
+var config = require('./config.js');
 require('./tokens.js');
 
 var fromLanguage = 'en';
-var toLanguage = 'ar';
+var toLanguage = 'zh-CHS';
 
 var client = new MsTranslator({
-		client_id: '[your customer id]',
-		client_secret: '[your account key]'
+		client_id: config.id,
+		client_secret: config.key
 	}, true)
 
 var paths = [];
@@ -80,7 +81,7 @@ intervalId = setInterval(function() {
 		var out = JSON.stringify(newTokens, null, 4);
 		out = '// jscs:disable maximumLineLength\n\ndefine(' + out + ');\n';
 
-		fs.writeFile("out.txt", out, function(err) {
+		fs.writeFile('out.js', out, function(err) {
 		    if(err) {
 		        return console.log(err);
 		    }
